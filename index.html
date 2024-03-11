@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <form action="elegirColor.php" onsubmit="validaFormulario()">
+        <label for="colorProducto" >Elija color: </label>
+        <input type="color" name="colorProducto" id="colorProducto" disabled="disabled">
+
+        <select name="producto" id="producto" onchange="activaColor()">
+            <option value="elija" selected>Elija producto</option>
+            <option value="movil">Móvil</option>
+            <option value="tablet">Tablet</option>
+        </select>
+
+
+        <input type="submit" value="Enviar datos">
+    </form>
+
+    <script>
+        function validaFormulario(){
+            let color = document.getElementById("colorProducto").value;
+                alert("El color elejido " + color);           
+            if(color !== "#fff000" && color !== "#ff0000" ){
+                alert("El color debe ser amarillo o rojo!");
+                return false;
+            }
+        }
+
+        function activaColor(){
+            let producto = document.getElementById("producto").value;
+            let color = document.getElementById("colorProducto");
+            if(producto == "movil"){
+                color.removeAttribute("disabled"); 
+            }else{
+                color.setAttribute("disabled","disabled");
+            }
+        }
+        
+    </script>
+
+</body>
+</html>
