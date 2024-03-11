@@ -1,46 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Venta de móviles</title>
 
 </head>
 <body>
-    <form action="elegirColor.php" onsubmit="validaFormulario()">
-        <label for="colorProducto" >Elija color: </label>
-        <input type="color" name="colorProducto" id="colorProducto" disabled="disabled">
+    <h1>Venta de móviles</h1>
+    <form action="enviaDatos.php" onsubmit="validaFormulario()"> <!--Para poner funciones en form se usa onsubmit-->
 
-        <select name="producto" id="producto" onchange="activaColor()">
-            <option value="elija" selected>Elija producto</option>
-            <option value="movil">Móvil</option>
-            <option value="tablet">Tablet</option>
-        </select>
+        <label for="colorMov" >Color del móvil: <input style="display:none;" type="color" name="colorMov" id="colorMov" disabled></label>
 
-
+        <label for="producto">
+            <select name="producto" id="producto" onchange="activarColor()"> <!--Para poner funciones en select se usa onchange-->
+                <option value="elija" selected>Elija producto...</option>
+                <option value="movil">Móvil</option>
+                <option value="tablet">Tablet</option>
+            </select>
+        </label>
+        
         <input type="submit" value="Enviar datos">
     </form>
 
     <script>
         function validaFormulario(){
-            let color = document.getElementById("colorProducto").value;
-                alert("El color elejido " + color);           
-            if(color !== "#fff000" && color !== "#ff0000" ){
-                alert("El color debe ser amarillo o rojo!");
+            let colorMov = document.getElementById("colorMov");          
+            if(colorMov.value!="#ff0000" && colorMov.value!="#ffff00"){
+                alert("Sólo nos queda de color amarillo o rojo");
+                colorMov.focus();
                 return false;
             }
+            return true;
         }
 
-        function activaColor(){
-            let producto = document.getElementById("producto").value;
-            let color = document.getElementById("colorProducto");
-            if(producto == "movil"){
-                color.removeAttribute("disabled"); 
+        function activarColor(){
+            let producto = document.getElementById("producto");
+            let colorMov = document.getElementById("colorMov");
+            if(producto.value=="movil"){
+                colorMov.removeAttribute("disabled"); 
+                colorMov.style.display="inline";
             }else{
-                color.setAttribute("disabled","disabled");
+                colorMov.setAttribute("disabled","");
+                colorMov.style.display="none";
             }
         }
-        
     </script>
 
 </body>
